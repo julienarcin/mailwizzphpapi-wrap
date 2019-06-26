@@ -21,7 +21,6 @@ $app->group('/campaigns', function() use ($app) {
         $endpoint = new MailWizzApi_Endpoint_Campaigns();
         $response = $endpoint->getCampaigns();
         echo MailWizzApi_Json::encode($response->body);
-
     });
 
     $app->post('/create', function() use ($app) {
