@@ -51,40 +51,42 @@ $app->group('/transact', function() use ($app) {
 
         if(!$post['to_name'] )
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Chưa có tên người nhận'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [to_name] is missing'));
             $app->stop();
         }
 
         if(!$post['to_email'] )
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Chưa có địa chỉ nhận thư'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [to_email] is missing'));
             $app->stop();
         }
 
         if(!$post['subject'] )
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Chưa có tiêu đề thư'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [subject] is missing'));
             $app->stop();
         }
 
         if(!isset($post['from_name']))
         {
-            $post['from_name'] = 'JAMJA - Chẳng lo về giá';
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [from_name] is missing'));
+            $app->stop();
         }
 
         if(!isset($post['from_email']))
         {
-            $post['from_email'] = 'info@jamja.vn';
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [from_email] is missing'));
+            $app->stop();
         }
 
         if(!isset($post['reply_to_name']))
         {
-            $post['reply_to_name'] = 'JAMJA Team';
+            $post['reply_to_name'] = $post['from_name'];
         }
 
         if(!isset($post['reply_to_email']))
         {
-            $post['reply_to_email'] = 'info@jamja.vn';
+            $post['reply_to_email'] = $post['from_email'];
         }
 
         if(!isset($post['plain_text']))
@@ -94,7 +96,7 @@ $app->group('/transact', function() use ($app) {
 
         if(!isset($post['body']))
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Chưa có nội dung thư'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [body] is missing'));
             $app->stop();
         }
         #$send_at=date('Y-m-d H:i:s');

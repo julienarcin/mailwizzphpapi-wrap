@@ -32,35 +32,37 @@ $app->group('/campaigns', function() use ($app) {
 
         if(!$post['name'] )
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Chưa có tên chiến dịch'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [name] is missing'));
             $app->stop();
         }
 
         if(!$post['subject'] )
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Không tìm thấy thông tin tiêu đè thư'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [subject] is missing'));
             $app->stop();
         }
 
         if(!$post['list_uid'] )
         {
-            echo json_encode(array('status' => 'error', 'result' => 'Không tìm thấy thông tin list cần gửi'));
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [list_uid] is missing'));
             $app->stop();
         }
 
         if(!isset($post['from_name']))
         {
-            $post['from_name'] = 'JAMJA - Chẳng lo về giá';
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [from_name] is missing'));
+            $app->stop();
         }
 
         if(!isset($post['from_email']))
         {
-            $post['from_email'] = 'info@jamja.vn';
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [from_email] is missing'));
+            $app->stop();
         }
 
         if(!isset($post['reply_to']))
         {
-            $post['reply_to'] = 'info@jamja.vn';
+            $post['reply_to'] = $post['from_email'];
         }
 
         if(!isset($post['send_at']))

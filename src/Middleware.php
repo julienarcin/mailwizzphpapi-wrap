@@ -24,6 +24,7 @@ class APIAuthMiddleware extends \Slim\Middleware
 
     private $_privateKey;
     private $_publicKey;
+    private $_apiUrl;
 
     public function __construct()
     {
@@ -33,25 +34,31 @@ class APIAuthMiddleware extends \Slim\Middleware
     {
         $request = $this->app->request();
 
+        $this->_apiUrl = $request->headers->get('api-url');
         $this->_publicKey = $request->headers->get('public-key');
         $this->_privateKey = $request->headers->get('private-key');
 
         //echo($publicKey);
         //echo($privateKey);
 
+        if (!$this->_apiUrl) {
+            echo json_encode(array('status' => 'error', 'result' => 'Please provide api url'));
+            return;
+        }
+
         if (!$this->_publicKey) {
-            echo json_encode(array('status' => 'error', 'result' => 'Please provide public app key'));
+            echo json_encode(array('status' => 'error', 'result' => 'Please provide public api key'));
             return;
         }
 
 
         if (!$this->_privateKey) {
-            echo json_encode(array('status' => 'error', 'result' => 'Please provide private app key'));
+            echo json_encode(array('status' => 'error', 'result' => 'Please provide private api key'));
             return;
         }
         
         $config = new MailWizzApi_Config(array(
-            'apiUrl' => 'https://localhost/api/index.php',
+            'apiUrl' => $this->_apiUrl,
             'publicKey' => $this->_publicKey, 
             'privateKey' => $this->_privateKey,
 
