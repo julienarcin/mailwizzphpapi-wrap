@@ -37,4 +37,4 @@ MailWizzApi_Autoloader::register();
 
 
 // start UTC
-date_default_timezone_set('Asia/Ho_Chi_Minh');
+date_default_timezone_set('Asia/Bangkok');
