@@ -51,6 +51,7 @@ POST Parameters:
   - list
   - from_name
   - from_email
+  - subject
   - content
   - send_at (format Y-m-d H:i:s, eg. 2019-06-29 23:59:59, not required, if not set = send now)
   - reply_to (not_required, if not set, = from_email)
@@ -67,6 +68,7 @@ POST Parameters:
   - list
   - from_name
   - from_email
+  - subject
   - content
   - send_at (format Y-m-d H:i:s, eg. 2019-06-29 23:59:59, not required, if not set = send now)
   - reply_to (not_required, if not set, = from_email)
