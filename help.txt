@@ -1,0 +1,102 @@
+# Mailwizz API Help
+
+## AUTH
+
+Headers :
+ - api-url
+ - public-key
+ - private-key
+
+
+
+## Methods
+
+# Add subscriber
+
+POST: /subscribers/user/add
+
+POST Parameters:
+ - email
+ - list
+
+
+# Unsubscribe user
+
+POST: /subscribers/user/unsubscribe
+
+POST Parameters:
+ - email
+ - list
+
+
+ # Get campaigns
+
+ GET: /campaigns/get
+
+
+ # Show campaign details
+
+ GET: /campaigns/show
+
+ GET Parameters:
+  - campaign
+
+
+ # Create campaign
+
+ POST: /campaigns/create
+
+ POST Parameters:
+  - name
+  - list
+  - from_name
+  - from_email
+  - content
+  - send_at (format Y-m-d H:i:s, eg. 2019-06-29 23:59:59, not required, if not set = send now)
+  - reply_to (not_required, if not set, = from_email)
+  - segment_uid (not required)
+
+ 
+ # Update campaign
+
+ POST: /campaigns/update
+
+ POST Parameters:
+  - campaign
+  - name
+  - list
+  - from_name
+  - from_email
+  - content
+  - send_at (format Y-m-d H:i:s, eg. 2019-06-29 23:59:59, not required, if not set = send now)
+  - reply_to (not_required, if not set, = from_email)
+  - segment_uid (not required)
+
+
+# Get lists
+ 
+  GET: /lists/get
+
+
+# Show list details
+
+ GET: /list/show
+
+ GET Parameters:
+  - list
+
+
+# Show list fields
+
+ GET: /list/fields
+
+ GET Parameters:
+  - list
+
+
+# Show list segments
+
+ GET: /list/segments
+
+ GET Parameters:
+  - list

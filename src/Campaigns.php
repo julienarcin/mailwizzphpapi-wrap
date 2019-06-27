@@ -41,6 +41,12 @@ $app->group('/campaigns', function() use ($app) {
             $app->stop();
         }
 
+        if(!$post['content'] )
+        {
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [content] is missing'));
+            $app->stop();
+        }
+
         if(!$post['list_uid'] )
         {
             echo json_encode(array('status' => 'error', 'result' => 'Parameter [list_uid] is missing'));
@@ -118,7 +124,7 @@ $app->group('/campaigns', function() use ($app) {
         echo MailWizzApi_Json::encode($response->body);
     });
 
-    $app->post('/update', function($request, $response, $args) use ($app) {
+    $app->post('/update', function() use ($app) {
 
         $endpoint = new MailWizzApi_Endpoint_Campaigns();
 
@@ -139,6 +145,12 @@ $app->group('/campaigns', function() use ($app) {
         if(!$post['subject'] )
         {
             echo json_encode(array('status' => 'error', 'result' => 'Parameter [subject] is missing'));
+            $app->stop();
+        }
+
+        if(!$post['content'] )
+        {
+            echo json_encode(array('status' => 'error', 'result' => 'Parameter [content] is missing'));
             $app->stop();
         }
 
@@ -175,7 +187,7 @@ $app->group('/campaigns', function() use ($app) {
             $post['segment_uid'] = '';
         }
 
-        $response = $endpoint->update($post['id'],array(
+        $response = $endpoint->update($post['campaign'],array(
             'name'          => $post['name'], // required
             'type'          => 'regular', // optional: regular or autoresponder
             'from_name'     => $post['from_name'], // required
@@ -219,7 +231,7 @@ $app->group('/campaigns', function() use ($app) {
         echo MailWizzApi_Json::encode($response->body);
     });
 
-    $app->post('/delete', function($request, $response, $args) use ($app) {
+    $app->post('/delete', function() use ($app) {
 
         $endpoint = new MailWizzApi_Endpoint_Campaigns();
 
