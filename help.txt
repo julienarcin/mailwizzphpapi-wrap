@@ -48,7 +48,7 @@ POST Parameters:
 
  POST Parameters:
   - name
-  - list
+  - list_uid
   - from_name
   - from_email
   - subject
@@ -65,7 +65,7 @@ POST Parameters:
  POST Parameters:
   - campaign
   - name
-  - list
+  - list_uid
   - from_name
   - from_email
   - subject

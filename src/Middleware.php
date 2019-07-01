@@ -41,18 +41,18 @@ class APIAuthMiddleware extends \Slim\Middleware
         //echo($publicKey);
         //echo($privateKey);
 
-        if (!$this->_apiUrl) {
+        if (empty($this->_apiUrl)) {
             echo json_encode(array('status' => 'error', 'result' => 'Please provide api url'));
             return;
         }
 
-        if (!$this->_publicKey) {
+        if (empty($this->_publicKey)) {
             echo json_encode(array('status' => 'error', 'result' => 'Please provide public api key'));
             return;
         }
 
 
-        if (!$this->_privateKey) {
+        if (empty($this->_privateKey)) {
             echo json_encode(array('status' => 'error', 'result' => 'Please provide private api key'));
             return;
         }
